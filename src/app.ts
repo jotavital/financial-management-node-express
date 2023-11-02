@@ -10,6 +10,6 @@ app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
     res.status(500).send(error.message);
 });
 
-app.use(router);
+app.use('/api', router);
 
 export default app;
