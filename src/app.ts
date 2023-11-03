@@ -1,15 +1,10 @@
-import express, { NextFunction } from 'express';
-import { Request, Response } from 'express';
-import router from '~/routes/api';
+import express from 'express';
+import usersRoutes from '~/routes/users';
 
 const app = express();
 
 app.use(express.json());
 
-app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
-    res.status(500).send(error.message);
-});
-
-app.use('/api', router);
+app.use('/api/users', usersRoutes);
 
 export default app;
