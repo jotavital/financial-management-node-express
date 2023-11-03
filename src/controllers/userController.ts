@@ -14,3 +14,25 @@ export const findById = (req: Request, res: Response) => {
         return res.json(users);
     });
 };
+
+export const findTransactions = (req: Request, res: Response) => {
+    const id = req.params.id;
+
+    return userRepository.findTransactions(id).then((transactions) => {
+        return res.json(transactions);
+    });
+};
+
+export const create = (req: Request, res: Response) => {
+    return userRepository.create(req.body).then((user) => {
+        return res.json(user);
+    });
+};
+
+export const createTransaction = (req: Request, res: Response) => {
+    return userRepository
+        .createTransaction(req.params.id, req.body)
+        .then((user) => {
+            return res.json(user);
+        });
+};
