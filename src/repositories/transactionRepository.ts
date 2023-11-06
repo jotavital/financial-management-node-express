@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import User from '~/models/User';
+import * as userRepository from '~/repositories/userRepository';
 
 const ObjectId = mongoose.Types.ObjectId;
 
@@ -37,4 +38,15 @@ export const findTransactionTotals = async (userId: string) => {
     ]).exec();
 
     return transactionTotals[0];
+};
+
+export const deleteTransaction = async (
+    userId: string,
+    transactionId: string
+) => {
+    const user = await userRepository.findById(userId);
+
+    user?.transactions.pull({ _id: new ObjectId(transactionId) });
+
+    return user?.save();
 };
