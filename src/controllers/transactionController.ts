@@ -21,3 +21,15 @@ export const deleteTransaction = (req: Request, res: Response) => {
             return res.json(response);
         });
 };
+
+export const updateTransaction = (req: Request, res: Response) => {
+    const { userId } = req.params;
+    const { transactionId } = req.params;
+    const attributes = req.body;
+
+    return transactionRepository
+        .updateTransaction(userId, transactionId, attributes)
+        .then((response) => {
+            return res.json(response);
+        });
+};

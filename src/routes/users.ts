@@ -17,6 +17,10 @@ usersRoutes.get(
     transactionController.findTransactionTotals
 );
 
+usersRoutes.put(
+    '/:userId/transactions/:transactionId',
+    transactionController.updateTransaction
+);
 usersRoutes.delete(
     '/:userId/transactions/:transactionId',
     transactionController.deleteTransaction

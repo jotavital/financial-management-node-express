@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { TransactionProps } from '~/models/Transaction';
 import User from '~/models/User';
 import * as userRepository from '~/repositories/userRepository';
 
@@ -49,4 +50,25 @@ export const deleteTransaction = async (
     user?.transactions.pull({ _id: new ObjectId(transactionId) });
 
     return user?.save();
+};
+
+export const updateTransaction = async (
+    userId: string,
+    transactionId: string,
+    attributes: TransactionProps
+) => {
+    return await User.findOneAndUpdate(
+        {
+            _id: userId,
+            'transactions._id': transactionId,
+        },
+        {
+            $set: {
+                'transactions.$.title': attributes.title,
+                'transactions.$.amount': attributes.amount,
+                'transactions.$.date': attributes.date,
+                'transactions.$.type': attributes.type,
+            },
+        }
+    );
 };
