@@ -29,9 +29,14 @@ export const findTransactions = (req: Request, res: Response) => {
 };
 
 export const create = (req: Request, res: Response) => {
-    return userRepository.create(req.body).then((user) => {
-        return res.json(user);
-    });
+    return userRepository
+        .create(req.body)
+        .then((user) => {
+            return res.json(user);
+        })
+        .catch((error) => {
+            return res.status(500).json(error._message);
+        });
 };
 
 export const createTransaction = (req: Request, res: Response) => {
