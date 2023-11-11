@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import * as userRepository from '~/repositories/userRepository';
+import * as userRepository from '~/repositories/user';
 
 export const find = (req: Request, res: Response) => {
     return userRepository.find().then((users) => {

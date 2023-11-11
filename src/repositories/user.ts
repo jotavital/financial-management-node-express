@@ -1,5 +1,6 @@
 import { TransactionProps } from '~/models/Transaction';
-import User, { UserProps } from '~/models/User';
+import User from '~/models/User';
+import { UserProps } from '~/types/user';
 
 export const find = async () => {
     return await User.find();

@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { TransactionProps } from '~/models/Transaction';
 import User from '~/models/User';
-import * as userRepository from '~/repositories/userRepository';
+import * as userRepository from '~/repositories/user';
 
 const ObjectId = mongoose.Types.ObjectId;
 

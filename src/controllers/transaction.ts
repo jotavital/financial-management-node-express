@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
-import * as transactionRepository from '~/repositories/transactionRepository';
+import * as transactionRepository from '~/repositories/transaction';
 
 export const findTransactionTotals = (req: Request, res: Response) => {
     const { userId } = req.params;
 
     return transactionRepository
         .findTransactionTotals(userId)
-        .then((transactions) => {
-            return res.json(transactions);
+        .then((totals) => {
+            return res.json(totals);
         });
 };
 

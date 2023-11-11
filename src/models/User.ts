@@ -1,19 +1,13 @@
 import bcrypt from 'bcrypt';
-import { Schema, Types, model } from 'mongoose';
-import { TransactionProps, transactionSchema } from '~/models/Transaction';
+import { Schema, model } from 'mongoose';
+import { transactionSchema } from '~/models/Transaction';
+import { UserMethods, UserModel, UserProps } from '~/types/user';
 
-export interface UserProps {
-    name: string;
-    email: string;
-    password: string;
-    transactions: Types.DocumentArray<TransactionProps>;
-}
-
-const usersSchema = new Schema<UserProps>(
+const usersSchema = new Schema<UserProps, UserModel, UserMethods>(
     {
         name: { $dataType: String, required: true },
         email: { $dataType: String, required: true, unique: true },
-        password: { $dataType: String, required: true },
+        password: { $dataType: String, required: true, select: false },
         transactions: [transactionSchema],
     },
     { typeKey: '$dataType', timestamps: true }
@@ -25,6 +19,10 @@ usersSchema.pre('save', async function (next) {
     this.password = await bcrypt.hash(this.password, 10);
 });
 
-const User = model<UserProps>('User', usersSchema);
+usersSchema.methods.comparePassword = async function (password: string) {
+    return bcrypt.compare(password, this.password);
+};
+
+const User = model<UserProps, UserModel>('User', usersSchema);
 
 export default User;

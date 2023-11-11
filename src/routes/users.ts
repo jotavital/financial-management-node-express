@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import * as userController from '~/controllers/userController';
-import * as transactionController from '~/controllers/transactionController';
+import * as transactionController from '~/controllers/transaction';
+import * as userController from '~/controllers/user';
 
 const usersRoutes: Router = Router();
 
