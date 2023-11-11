@@ -1,6 +1,8 @@
 import cors from 'cors';
 import express from 'express';
+import 'express-async-errors';
 import * as authController from '~/controllers/auth';
+import { errorHandler } from '~/middlewares/errors';
 import usersRoutes from '~/routes/users';
 
 const app = express();
@@ -14,5 +16,7 @@ app.use(express.json());
 
 app.post('/api/signin', authController.signIn);
 app.use('/api/users', usersRoutes);
+
+app.use(errorHandler);
 
 export default app;
