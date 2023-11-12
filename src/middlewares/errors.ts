@@ -1,7 +1,13 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { BaseCustomError } from '~/errors/BaseCustomError';
 
-export const errorHandler = (err: Error, req: Request, res: Response) => {
+export const errorHandler = (
+    err: Error,
+    req: Request,
+    res: Response,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    next: NextFunction
+) => {
     // Handled errors
     if (err instanceof BaseCustomError) {
         const { statusCode, errors, logging } = err;
