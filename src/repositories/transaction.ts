@@ -5,6 +5,12 @@ import * as userRepository from '~/repositories/user';
 
 const ObjectId = mongoose.Types.ObjectId;
 
+export const findTransactions = async (id: string) => {
+    const user = await User.findById(id);
+
+    return user?.transactions;
+};
+
 export const findTransactionTotals = async (userId: string) => {
     const transactionTotals = await User.aggregate([
         { $unwind: { path: '$transactions' } },

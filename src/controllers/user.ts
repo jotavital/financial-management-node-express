@@ -15,19 +15,6 @@ export const findById = (req: Request, res: Response) => {
     });
 };
 
-export const findTransactions = (req: Request, res: Response) => {
-    const id = req.params.id;
-
-    return userRepository
-        .findTransactions(id)
-        .then((transactions) => {
-            return res.json(transactions);
-        })
-        .catch(() => {
-            return res.status(400);
-        });
-};
-
 export const create = (req: Request, res: Response) => {
     return userRepository
         .create(req.body)

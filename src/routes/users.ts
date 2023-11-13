@@ -9,13 +9,7 @@ usersRoutes.get('/:id', userController.findById);
 usersRoutes.post('/', userController.create);
 
 // TODO: mover rotas de transactions
-usersRoutes.get('/:id/transactions', userController.findTransactions);
 usersRoutes.post('/:id/transactions', userController.createTransaction);
-
-usersRoutes.get(
-    '/:userId/transactions/totals',
-    transactionController.findTransactionTotals
-);
 
 usersRoutes.put(
     '/:userId/transactions/:transactionId',
