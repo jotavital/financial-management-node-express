@@ -17,11 +17,21 @@ export const verifyAuthToken = (
         });
     }
 
-    const { userId } = jwt.verify(
-        token,
-        String(process.env.JWT_SECRET_KEY)
-    ) as JwtPayload;
+    let userId = null;
 
+    try {
+        ({ userId } = jwt.verify(
+            token,
+            String(process.env.JWT_SECRET_KEY)
+        ) as JwtPayload);
+    } catch (error) {
+        throw new CustomError({
+            message: 'Token inválido.',
+            code: 401,
+        });
+    }
+
+    // TODO: verificar se token está expirado
     if (!userId) {
         throw new CustomError({
             message: 'Token inválido.',
