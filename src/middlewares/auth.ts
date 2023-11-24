@@ -39,6 +39,7 @@ export const verifyAuthToken = (
         });
     }
 
+    // TODO: dar um jeito de fazer isso aqui pq nao funciona
     req.params.userId = userId;
 
     return next();
