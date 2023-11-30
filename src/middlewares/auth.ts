@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { NextFunction, Request, Response } from 'express';
-import jwt, { JwtPayload } from 'jsonwebtoken';
+import jwt, { JwtPayload, VerifyErrors } from 'jsonwebtoken';
 import CustomError from '~/errors/CustomError';
 
 export const verifyAuthToken = (
@@ -25,13 +25,21 @@ export const verifyAuthToken = (
             String(process.env.JWT_SECRET_KEY)
         ) as JwtPayload);
     } catch (error) {
+        const newError = error as VerifyErrors;
+
+        if (newError.name === 'TokenExpiredError') {
+            throw new CustomError({
+                message: 'Token expirado.',
+                code: 401,
+            });
+        }
+
         throw new CustomError({
             message: 'Token inválido.',
             code: 401,
         });
     }
 
-    // TODO: verificar se token está expirado
     if (!userId) {
         throw new CustomError({
             message: 'Token inválido.',

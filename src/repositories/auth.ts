@@ -22,8 +22,7 @@ export const signIn = async (data: SignInData): Promise<SignInResponse> => {
     };
 
     const token = jwt.sign(jwtPayload, String(process.env.JWT_SECRET_KEY), {
-        // TODO: testar valor menor e redirecionar no front
-        expiresIn: '2 days',
+        expiresIn: '1 day',
     });
 
     if (!token) {
