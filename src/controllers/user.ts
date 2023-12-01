@@ -25,11 +25,3 @@ export const create = (req: Request, res: Response) => {
             return res.status(500).json(error._message);
         });
 };
-
-export const createTransaction = (req: Request, res: Response) => {
-    return userRepository
-        .createTransaction(req.params.id, req.body)
-        .then((user) => {
-            return res.json(user);
-        });
-};

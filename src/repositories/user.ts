@@ -13,14 +13,3 @@ export const findById = async (id: string) => {
 export const create = async (attributes: UserProps) => {
     return await User.create(attributes);
 };
-
-export const createTransaction = async (
-    userId: string,
-    attributes: TransactionProps
-) => {
-    const user = await findById(userId);
-
-    user?.transactions.push(attributes);
-
-    return await user?.save();
-};

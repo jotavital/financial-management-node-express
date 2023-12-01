@@ -47,6 +47,17 @@ export const findTransactionTotals = async (userId: string) => {
     return transactionTotals[0];
 };
 
+export const createTransaction = async (
+    userId: string,
+    attributes: TransactionProps
+) => {
+    const user = await userRepository.findById(userId);
+
+    user?.transactions.push(attributes);
+
+    return await user?.save();
+};
+
 export const deleteTransaction = async (
     userId: string,
     transactionId: string

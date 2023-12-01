@@ -8,16 +8,4 @@ usersRoutes.get('/', userController.find);
 usersRoutes.get('/:id', userController.findById);
 usersRoutes.post('/', userController.create);
 
-// TODO: mover rotas de transactions
-usersRoutes.post('/:id/transactions', userController.createTransaction);
-
-usersRoutes.put(
-    '/:userId/transactions/:transactionId',
-    transactionController.updateTransaction
-);
-usersRoutes.delete(
-    '/:userId/transactions/:transactionId',
-    transactionController.deleteTransaction
-);
-
 export default usersRoutes;
