@@ -29,5 +29,7 @@ export const signIn = async (data: SignInData): Promise<SignInResponse> => {
         throw new CustomError({ message: 'Erro ao gerar o token de acesso' });
     }
 
-    return { token };
+    user.password = '';
+
+    return { user, token };
 };
