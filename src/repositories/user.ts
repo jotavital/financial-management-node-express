@@ -1,4 +1,3 @@
-import { TransactionProps } from '~/models/Transaction';
 import User from '~/models/User';
 import { UserProps } from '~/types/user';
 

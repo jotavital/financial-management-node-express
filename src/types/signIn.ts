@@ -1,4 +1,4 @@
-import { UserProps } from '~/types/user';
+import { UserBasicInfo } from '~/types/user';
 
 export interface SignInData {
     email: string;
@@ -6,6 +6,6 @@ export interface SignInData {
 }
 
 export interface SignInResponse {
-    user: UserProps;
+    user: UserBasicInfo;
     token?: string;
 }

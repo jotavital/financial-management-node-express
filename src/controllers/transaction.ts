@@ -23,7 +23,7 @@ export const findTransactionTotals = (req: Request, res: Response) => {
 export const createTransaction = (req: Request, res: Response) => {
     return transactionRepository
         .createTransaction(req.userId, req.body)
-        .then((user: any) => {
+        .then((user) => {
             return res.json(user);
         });
 };

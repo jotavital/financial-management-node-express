@@ -8,6 +8,11 @@ export interface UserProps {
     transactions: Types.DocumentArray<TransactionProps>;
 }
 
+export interface UserBasicInfo {
+    name: string;
+    email: string;
+}
+
 export interface UserMethods {
     comparePassword: (password: string) => Promise<boolean>;
 }
