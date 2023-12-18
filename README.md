@@ -11,6 +11,8 @@ This project is up using:
 * Mongoose
 * Husky
 * Prettier
+* ESLint
+* Lint Staged
 * Yarn
 
 # How to run
