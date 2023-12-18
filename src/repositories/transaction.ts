@@ -6,7 +6,7 @@ import * as userRepository from '~/repositories/user';
 const ObjectId = mongoose.Types.ObjectId;
 
 export const findTransactions = async (id: string) => {
-    const user = await User.findById(id);
+    const user = await User.findById(id).slice('transactions', -5);
 
     return user?.transactions;
 };
