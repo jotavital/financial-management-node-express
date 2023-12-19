@@ -25,3 +25,14 @@ export const create = (req: Request, res: Response) => {
             return res.status(500).json(error._message);
         });
 };
+
+export const update = (req: Request, res: Response) => {
+    return userRepository
+        .update(req.userId, req.body)
+        .then((user) => {
+            return res.json(user);
+        })
+        .catch((error) => {
+            return res.status(500).json(error._message);
+        });
+};
