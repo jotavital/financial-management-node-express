@@ -8,6 +8,7 @@ This project is up using:
 * Express
 * Typescript
 * MongoDB
+* Firebase Storage
 * Mongoose
 * Husky
 * Prettier
