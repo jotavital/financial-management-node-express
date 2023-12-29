@@ -1,5 +1,6 @@
 import CustomError from '~/errors/CustomError';
 import User from '~/models/User';
+import { deleteFile } from '~/services/firebase';
 import { UpdateUserProps, UserProps } from '~/types/user';
 
 export const find = async () => {
@@ -23,6 +24,10 @@ export const update = async (userId: string, attributes: UpdateUserProps) => {
         }
 
         if (attributes.avatar !== undefined) {
+            if (user.avatar) {
+                await deleteFile(user.avatar);
+            }
+
             user.avatar = String(attributes.avatar);
         }
 

@@ -36,3 +36,20 @@ export const uploadFile = (path: string, fileName: string) => {
 export const getFileUrl = (fileRef: File) => {
     return getDownloadURL(fileRef);
 };
+
+export const deleteFile = (fileUrl: string) => {
+    const filePathWithQuery = fileUrl.split('/').pop();
+
+    if (filePathWithQuery) {
+        const filePath = decodeURIComponent(filePathWithQuery.split('?')[0]);
+
+        return firebase
+            .storage()
+            .bucket()
+            .file(filePath)
+            .delete()
+            .catch(() => false);
+    }
+
+    return false;
+};
