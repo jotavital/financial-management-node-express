@@ -1,6 +1,6 @@
 import CustomError from '~/errors/CustomError';
 import User from '~/models/User';
-import { UserProps } from '~/types/user';
+import { UpdateUserProps, UserProps } from '~/types/user';
 
 export const find = async () => {
     return await User.find();
@@ -14,11 +14,17 @@ export const create = async (attributes: UserProps) => {
     return await User.create(attributes);
 };
 
-export const update = async (userId: string, attributes: UserProps) => {
+export const update = async (userId: string, attributes: UpdateUserProps) => {
     const user = await findById(userId);
 
     if (user) {
-        user.name = attributes.name;
+        if (attributes.name !== undefined) {
+            user.name = attributes.name;
+        }
+
+        if (attributes.avatar !== undefined) {
+            user.avatar = String(attributes.avatar);
+        }
 
         return await user.save();
     } else {

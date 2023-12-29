@@ -8,6 +8,7 @@ const usersSchema = new Schema<UserProps, UserModel, UserMethods>(
         name: { $dataType: String, required: true },
         email: { $dataType: String, required: true, unique: true },
         password: { $dataType: String, required: true, select: false },
+        avatar: { $dataType: String, required: false, select: true },
         transactions: [transactionSchema],
     },
     { typeKey: '$dataType', timestamps: true }

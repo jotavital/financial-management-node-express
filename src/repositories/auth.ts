@@ -33,6 +33,7 @@ export const signIn = async (data: SignInData): Promise<SignInResponse> => {
         user: {
             name: user.name,
             email: user.email,
+            avatar: user.avatar,
         },
         token,
     };
